@@ -47,7 +47,13 @@ if(isset($_COOKIE["aid"])){
 		<br><br>
 		<ul data-role="listview" data-theme="b" style="margin-top:0px;" class="nav-search">
 			<li data-theme="b" data-filtertext="back to home">
-				<a href="./index.php">Home</a>
+				<a href="./index.php" data-ajax="false">Home</a>
+			</li>
+			<li data-theme="b" data-filtertext="Login Here">				
+				<a href="./login.html" data-ajax="false">Login</a>
+			</li>
+			<li data-theme="b" data-filtertext="List of post">
+				<a href="./list.php" data-ajax="false">List</a>
 			</li>
 		</ul>
 	</div>
