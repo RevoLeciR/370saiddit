@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 24, 2016 at 08:21 AM
+-- Generation Time: Jul 24, 2016 at 10:36 PM
 -- Server version: 5.7.13-log
 -- PHP Version: 5.6.22
 
@@ -29,11 +29,9 @@ USE `370`;
 --
 
 DROP TABLE IF EXISTS `acccomvote`;
-CREATE TABLE IF NOT EXISTS `acccomvote` (
+CREATE TABLE `acccomvote` (
   `aid` int(11) NOT NULL,
-  `cid` int(11) NOT NULL,
-  KEY `aid` (`aid`),
-  KEY `cid` (`cid`)
+  `cid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -50,15 +48,13 @@ INSERT INTO `acccomvote` (`aid`, `cid`) VALUES
 --
 
 DROP TABLE IF EXISTS `accounts`;
-CREATE TABLE IF NOT EXISTS `accounts` (
-  `aid` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `accounts` (
+  `aid` int(11) NOT NULL,
   `username` varchar(100) NOT NULL,
   `password` varchar(64) NOT NULL,
   `upvote` int(11) DEFAULT '0',
-  `downvote` int(11) DEFAULT '0',
-  PRIMARY KEY (`aid`),
-  UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  `downvote` int(11) DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `accounts`
@@ -75,11 +71,9 @@ INSERT INTO `accounts` (`aid`, `username`, `password`, `upvote`, `downvote`) VAL
 --
 
 DROP TABLE IF EXISTS `accpostvote`;
-CREATE TABLE IF NOT EXISTS `accpostvote` (
+CREATE TABLE `accpostvote` (
   `aid` int(11) NOT NULL,
-  `pid` int(11) NOT NULL,
-  KEY `aid` (`aid`),
-  KEY `pid` (`pid`)
+  `pid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -96,18 +90,16 @@ INSERT INTO `accpostvote` (`aid`, `pid`) VALUES
 --
 
 DROP TABLE IF EXISTS `commentcom`;
-CREATE TABLE IF NOT EXISTS `commentcom` (
-  `cid` int(11) NOT NULL,
-  `com_cid` int(11) NOT NULL,
-  KEY `cid` (`cid`),
-  KEY `com_cid` (`com_cid`)
+CREATE TABLE `commentcom` (
+  `ccid` int(11) NOT NULL,
+  `com_cid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `commentcom`
 --
 
-INSERT INTO `commentcom` (`cid`, `com_cid`) VALUES
+INSERT INTO `commentcom` (`ccid`, `com_cid`) VALUES
 (1, 2);
 
 -- --------------------------------------------------------
@@ -117,13 +109,10 @@ INSERT INTO `commentcom` (`cid`, `com_cid`) VALUES
 --
 
 DROP TABLE IF EXISTS `commenton`;
-CREATE TABLE IF NOT EXISTS `commenton` (
+CREATE TABLE `commenton` (
   `aid` int(11) NOT NULL,
   `pid` int(11) NOT NULL,
-  `cid` int(11) NOT NULL,
-  KEY `aid` (`aid`),
-  KEY `pid` (`pid`),
-  KEY `cid` (`cid`)
+  `cid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -140,19 +129,16 @@ INSERT INTO `commenton` (`aid`, `pid`, `cid`) VALUES
 --
 
 DROP TABLE IF EXISTS `comments`;
-CREATE TABLE IF NOT EXISTS `comments` (
-  `cid` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `comments` (
+  `cid` int(11) NOT NULL,
   `datetime` datetime DEFAULT CURRENT_TIMESTAMP,
   `editdatetime` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `text` varchar(1000) NOT NULL,
   `refer_pid` int(11) NOT NULL,
   `created_aid` int(11) NOT NULL,
   `upvote` int(11) DEFAULT '0',
-  `downvote` int(11) DEFAULT '0',
-  PRIMARY KEY (`cid`),
-  KEY `refer_pid` (`refer_pid`),
-  KEY `created_aid` (`created_aid`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  `downvote` int(11) DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `comments`
@@ -169,11 +155,9 @@ INSERT INTO `comments` (`cid`, `datetime`, `editdatetime`, `text`, `refer_pid`, 
 --
 
 DROP TABLE IF EXISTS `favourites`;
-CREATE TABLE IF NOT EXISTS `favourites` (
+CREATE TABLE `favourites` (
   `aid` int(11) NOT NULL,
-  `pid` int(11) NOT NULL,
-  KEY `aid` (`aid`),
-  KEY `pid` (`pid`)
+  `pid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -190,11 +174,9 @@ INSERT INTO `favourites` (`aid`, `pid`) VALUES
 --
 
 DROP TABLE IF EXISTS `friends`;
-CREATE TABLE IF NOT EXISTS `friends` (
+CREATE TABLE `friends` (
   `aid` int(11) NOT NULL,
-  `frid` int(11) NOT NULL,
-  KEY `aid` (`aid`),
-  KEY `frid` (`frid`)
+  `frid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -211,13 +193,10 @@ INSERT INTO `friends` (`aid`, `frid`) VALUES
 --
 
 DROP TABLE IF EXISTS `makepost`;
-CREATE TABLE IF NOT EXISTS `makepost` (
+CREATE TABLE `makepost` (
   `aid` int(11) NOT NULL,
   `ssid` int(11) NOT NULL,
-  `pid` int(11) NOT NULL,
-  KEY `aid` (`aid`),
-  KEY `ssid` (`ssid`),
-  KEY `pid` (`pid`)
+  `pid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -234,8 +213,8 @@ INSERT INTO `makepost` (`aid`, `ssid`, `pid`) VALUES
 --
 
 DROP TABLE IF EXISTS `posts`;
-CREATE TABLE IF NOT EXISTS `posts` (
-  `pid` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `posts` (
+  `pid` int(11) NOT NULL,
   `createdatetime` datetime DEFAULT CURRENT_TIMESTAMP,
   `editdatetime` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `url` varchar(255) DEFAULT NULL,
@@ -243,10 +222,8 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `text` varchar(1000) NOT NULL,
   `upvote` int(11) DEFAULT '0',
   `downvote` int(11) DEFAULT '0',
-  `ssbelong` int(11) NOT NULL,
-  PRIMARY KEY (`pid`),
-  KEY `ssbelong` (`ssbelong`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `ssbelong` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `posts`
@@ -262,16 +239,14 @@ INSERT INTO `posts` (`pid`, `createdatetime`, `editdatetime`, `url`, `title`, `t
 --
 
 DROP TABLE IF EXISTS `subsaiddit`;
-CREATE TABLE IF NOT EXISTS `subsaiddit` (
-  `ssid` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `subsaiddit` (
+  `ssid` int(11) NOT NULL,
   `title` varchar(50) NOT NULL,
   `description` varchar(255) NOT NULL,
   `createtime` datetime DEFAULT CURRENT_TIMESTAMP,
   `created_aid` int(11) NOT NULL,
-  `frontpage` int(11) DEFAULT '0',
-  PRIMARY KEY (`ssid`),
-  KEY `created_aid` (`created_aid`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `frontpage` int(11) DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `subsaiddit`
@@ -287,11 +262,9 @@ INSERT INTO `subsaiddit` (`ssid`, `title`, `description`, `createtime`, `created
 --
 
 DROP TABLE IF EXISTS `subscription`;
-CREATE TABLE IF NOT EXISTS `subscription` (
+CREATE TABLE `subscription` (
   `aid` int(11) NOT NULL,
-  `ssid` int(11) NOT NULL,
-  KEY `aid` (`aid`),
-  KEY `ssid` (`ssid`)
+  `ssid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -301,6 +274,121 @@ CREATE TABLE IF NOT EXISTS `subscription` (
 INSERT INTO `subscription` (`aid`, `ssid`) VALUES
 (1, 1);
 
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `acccomvote`
+--
+ALTER TABLE `acccomvote`
+  ADD KEY `aid` (`aid`),
+  ADD KEY `cid` (`cid`);
+
+--
+-- Indexes for table `accounts`
+--
+ALTER TABLE `accounts`
+  ADD PRIMARY KEY (`aid`),
+  ADD UNIQUE KEY `username` (`username`);
+
+--
+-- Indexes for table `accpostvote`
+--
+ALTER TABLE `accpostvote`
+  ADD KEY `aid` (`aid`),
+  ADD KEY `pid` (`pid`);
+
+--
+-- Indexes for table `commentcom`
+--
+ALTER TABLE `commentcom`
+  ADD KEY `cid` (`ccid`),
+  ADD KEY `com_cid` (`com_cid`);
+
+--
+-- Indexes for table `commenton`
+--
+ALTER TABLE `commenton`
+  ADD KEY `aid` (`aid`),
+  ADD KEY `pid` (`pid`),
+  ADD KEY `cid` (`cid`);
+
+--
+-- Indexes for table `comments`
+--
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`cid`),
+  ADD KEY `refer_pid` (`refer_pid`),
+  ADD KEY `created_aid` (`created_aid`);
+
+--
+-- Indexes for table `favourites`
+--
+ALTER TABLE `favourites`
+  ADD KEY `aid` (`aid`),
+  ADD KEY `pid` (`pid`);
+
+--
+-- Indexes for table `friends`
+--
+ALTER TABLE `friends`
+  ADD KEY `aid` (`aid`),
+  ADD KEY `frid` (`frid`);
+
+--
+-- Indexes for table `makepost`
+--
+ALTER TABLE `makepost`
+  ADD KEY `aid` (`aid`),
+  ADD KEY `ssid` (`ssid`),
+  ADD KEY `pid` (`pid`);
+
+--
+-- Indexes for table `posts`
+--
+ALTER TABLE `posts`
+  ADD PRIMARY KEY (`pid`),
+  ADD KEY `ssbelong` (`ssbelong`);
+
+--
+-- Indexes for table `subsaiddit`
+--
+ALTER TABLE `subsaiddit`
+  ADD PRIMARY KEY (`ssid`),
+  ADD KEY `created_aid` (`created_aid`);
+
+--
+-- Indexes for table `subscription`
+--
+ALTER TABLE `subscription`
+  ADD KEY `aid` (`aid`),
+  ADD KEY `ssid` (`ssid`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `accounts`
+--
+ALTER TABLE `accounts`
+  MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `posts`
+--
+ALTER TABLE `posts`
+  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `subsaiddit`
+--
+ALTER TABLE `subsaiddit`
+  MODIFY `ssid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- Constraints for dumped tables
 --
@@ -323,7 +411,7 @@ ALTER TABLE `accpostvote`
 -- Constraints for table `commentcom`
 --
 ALTER TABLE `commentcom`
-  ADD CONSTRAINT `commentcom_ibfk_1` FOREIGN KEY (`cid`) REFERENCES `comments` (`cid`) ON DELETE CASCADE,
+  ADD CONSTRAINT `commentcom_ibfk_1` FOREIGN KEY (`ccid`) REFERENCES `comments` (`cid`) ON DELETE CASCADE,
   ADD CONSTRAINT `commentcom_ibfk_2` FOREIGN KEY (`com_cid`) REFERENCES `comments` (`cid`) ON DELETE CASCADE;
 
 --

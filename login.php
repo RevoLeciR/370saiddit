@@ -9,6 +9,7 @@
 		  $aid = $member_retrieve['aid'];
 		  setcookie("aid",$aid,time()+3600);
 		  echo "Welcome back!!";
+      header("Location: list.php");
 	  }else{
 		  echo "Error: Account does not exists!! Redirecting in 3 seconds...";
       

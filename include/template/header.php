@@ -49,9 +49,15 @@ if(isset($_COOKIE["aid"])){
 			<li data-theme="b" data-filtertext="back to home">
 				<a href="./index.php" data-ajax="false">Home</a>
 			</li>
+			<?php if(!$aid){?>
 			<li data-theme="b" data-filtertext="Login Here">				
 				<a href="./login.html" data-ajax="false">Login</a>
 			</li>
+			<?php }else{?>
+			<li data-theme="b" data-filtertext="Login Here">				
+				<a href="./logout.php" data-ajax="false">Logout</a>
+			</li>
+			<?php } ?>
 			<li data-theme="b" data-filtertext="List of post">
 				<a href="./list.php" data-ajax="false">List</a>
 			</li>
