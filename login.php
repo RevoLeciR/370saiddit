@@ -1,5 +1,5 @@
 <?php 
-    //include './include/template/header.php';
+    include './include/template/header.php';
     include "./include/dbconnect.php";
 	  $username = $_POST["username"];
 	  $pre_hash = hash("sha256", $_POST["password"])."salting";
@@ -7,13 +7,15 @@
 	  $member_matching = mysqli_query($db, "SELECT aid FROM accounts WHERE (username = '$username' AND password = '$password')");
 	  if(mysqli_num_rows($member_matching) > 0){
 		  $member_retrieve = mysqli_fetch_assoc($member_matching);
-		  $aid = $member_retrieve['aid'];
-		  setcookie("aid",$aid,time()+3600);
+		  //$aid = $member_retrieve['aid'];
+		  //setcookie("aid",$aid,time()+3600);
       session_start();
       $_SESSION['user'] = $username;
-      if ($_SESSION['user'] = 'admin') {
+      if ($username == 'admin') {
         $_SESSION['admin'] = 1;
-      }  
+      } else {
+        $_SESSION['admin'] = 0;
+      }
       $_SESSION['login'] = 1;
       header("Location: index.php");
       echo $username;

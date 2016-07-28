@@ -1,7 +1,7 @@
 <html>
 <head>
 	<style>
-	.login-card {
+	.newss-card {
 	  padding: 40px;
 	  width: 274px;
 	  background-color: #F7F7F7;
@@ -17,18 +17,11 @@
 <body>
 <?php include './include/template/header.php';
 
-	echo '<form action="addsubs.php" method="post" data-ajax="false">
-  Title: <input type="text" name="title"><br>
-  Description: <textarea name="description"></textarea><br>
-  <input type="submit" value="Create New SubSaiddit">
-  </form>';
-?>
-
-	echo '<div class="login-card">
+	echo '<div class="newss-card">
 	<form action="addsubs.php" method="post" data-ajax="false">
 	Title: <input type="text" name="title" placeholder="Title"><br>
 	Description: <textarea name="description" placeholder="Description"></textarea><br>
-	<input type="submit" value="add">
+	<input type="submit" value="Create New Subsaiddit">
 	</form>
 	</div>';
 include './include/template/footer.php';?>

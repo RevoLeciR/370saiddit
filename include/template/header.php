@@ -38,9 +38,18 @@ if(isset($_COOKIE["aid"])){
  </head>
  <body>
     <div data-role="header" data-position="fixed" data-theme="b">
-        <dt id="header_title">Saiddit</dt>
+        <dt id="header_title"><a href="index.php" style="color:white; text-decoration:none">Saiddit</a></dt>
 		<a href="#left-panel" data-icon="carat-r" data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-nodisc-icon">Open left panel</a>
-    </div><!-- /header -->
+		<div data-role="button" data-type="horizontal" data-role="controlgroup" class="ui-btn-right">  
+		<?php
+			if (!isset($_SESSION['login'])){
+				echo '<a href="./login.html" class="ui-btn ui-btn-b ui-shadow">Sign in</a> <a href="./registration.html" class="ui-btn ui-btn-b ui-shadow">Register</a>'; 		
+			} else {
+				echo '<a href="logout.php" class="ui-btn ui-corner-all ui-shadow ui-btn-icon-left">Log out</a>';
+			}
+		?>
+		</div>
+    </div>	
 
 	<div data-role="panel"  data-display="push"  id="left-panel">
 		<a href="#" data-rel="close" class="ui-btn ui-corner-all ui-shadow ui-mini ui-btn-inline ui-icon-delete ui-btn-icon-left ui-btn-right">Close</a>

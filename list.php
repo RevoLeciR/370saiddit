@@ -10,5 +10,5 @@
 		echo '<tr><td><a href="./posts_list.php?subs='.$row["ssid"].'"  data-ajax="false">'.$row["title"].'</a></td><td>'.$row["description"].'</td></tr>';
 	}
 echo "</tbody></table>";
-echo '<a href="./newsubsaiddit.php"  data-ajax="false">New Subsaiddit</a>';
+echo '<br><a href="./newsubsaiddit.php"  data-ajax="false">Create New Subsaiddit</a>';
 ?>
