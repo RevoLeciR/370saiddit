@@ -11,6 +11,9 @@
 		  setcookie("aid",$aid,time()+3600);
       session_start();
       $_SESSION['user'] = $username;
+      if ($_SESSION['user'] = 'admin') {
+        $_SESSION['admin'] = 1;
+      }  
       $_SESSION['login'] = 1;
       header("Location: index.php");
       echo $username;

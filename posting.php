@@ -6,4 +6,4 @@ Title: <input type="text" name="title"><br>
 Message: <textarea name="message"></textarea><br>
 <input type="submit" value="post">
 </form>';
-include './include/template/footer.php';?>
+?>

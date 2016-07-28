@@ -1,14 +1,17 @@
 <?php 
   include "./include/dbconnect.php";
+  include "./include/template/header.php";
 ?>
 
 <center>WELCOME TO SAIDDIT</center>
 <br>
   <Center>
     <?php
-      session_start();
       if (isset($_SESSION['login']) && $_SESSION['login'] != '') {
-        echo "Hello " . $_SESSION['user'] . "<br><a href='logout.php'>SIGN OUT</a>";
+        if ($_SESSION['admin'] == 1) {
+          echo '<font color="red">ADMIN<br><br></font>';
+        }
+        echo "Hello " . $_SESSION['user'] . "<br><br><a href='logout.php'>SIGN OUT</a>";
       } else {
         echo "<a href='login.html'>LOGIN</a> | <a href='registration.html'> SIGN UP</a>";
       }
