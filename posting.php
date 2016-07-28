@@ -2,7 +2,7 @@
 <head>
 	<style>
 
-	.login-card {
+	.post-card {
 	  padding: 40px;
 	  width: 274px;
 	  background-color: #F7F7F7;
@@ -17,20 +17,14 @@
 </head>
 <body>
 <?php include './include/template/header.php';
-	$subsaiddet = $_REQUEST['subs'];
-	echo '<div class="login-card">
-	<form action="addpost.php" method="post" data-ajax="false">
-	Subs: <input type="text" value="'.$subsaiddet.'" name="subs"  readonly><br>
+	$subsaiddit = $_REQUEST['subs'];
+	echo '<div class="post-card">
+	<form action="addpost.php?ss='.$subsaiddit.'" method="post" data-ajax="false">
 Title: <input type="text" name="title"><br>
 Message: <textarea name="message"></textarea><br>
-<input type="submit" value="post">
+<input type="submit" value="Add post">
 </form>';
 ?>
-	Title: <input type="text" name="title" placeholder="Title"><br>
-	Message: <textarea name="message" placeholder="Message"></textarea><br>
-	<input type="submit" value="post">
-	</form>
-	</div>';
-include './include/template/footer.php';?>
+
 </body>
 </html>

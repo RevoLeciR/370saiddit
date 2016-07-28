@@ -11,7 +11,7 @@
 
    echo "<br><div><div>Title: " .$row["title"] . "<br> Posted by: ". $row['username'] . "<br>" . "Posted on: " . $row['createdatetime'] . "<br>Message: ".$row["text"] . "<br>";
 	if (isset($_SESSION['login'])) {
-    if($_SESSION['aid'] == $row["aid"]){
+    if($_SESSION['aid'] == $row["aid"] || $_SESSION['admin'] == 1){
 		  echo "<br><a href=\"vote.php?pid=".$row["pid"]."&opt=up\"  onclick=\"return confirm('Are you sure?')\" data-ajax=\"false\">UPVOTE</a> | <a href=\"vote.php?pid=".$row["pid"]."&opt=down\"  onclick=\"return confirm('Are you sure?')\" data-ajax=\"false\">DOWNVOTE</a> | <a href=\"editpost.php?pid=".$row["pid"]."&action=delete\" onclick=\"return confirm('Are you sure?')\"  data-ajax=\"false\">DELETE</a><br></div><br><div>";
 	  }else{
 		  echo "<br><a href=\"vote.php?pid=".$row["pid"]."&opt=up\"  onclick=\"return confirm('Are you sure?')\" data-ajax=\"false\">UPVOTE</a> | <a href=\"vote.php?pid=".$row["pid"]."&opt=down\"  onclick=\"return confirm('Are you sure?')\" data-ajax=\"false\">DOWNVOTE</a><br></div><br><div>";

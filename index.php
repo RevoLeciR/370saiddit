@@ -45,7 +45,7 @@
   $arr = mysqli_query($db, "SELECT * FROM posts ORDER BY (upvote-downvote) DESC");
   if (isset($_SESSION['login']) && $_SESSION['login'] != '') {
   
-    echo '<center><a href="newsubsaiddit.php">Start a new SubSaiddit</a><br><br>';
+    echo '<center><a href="./newsubsaiddit.php">Start a new SubSaiddit</a><br><br>';
   
     echo '<center>------------  SUBSCRIBED POSTS  ------------</center>';
     
