@@ -3,7 +3,7 @@
   $ssname = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM subsaiddit WHERE ssid = '$subs' "));
   echo "<center><br> Welcome to the <font color='blue'><b> " . $ssname['title'] . "</b></font> SubSaiddit!<br><br>";
 	$posts_results = mysqli_query($db,"SELECT * FROM posts LEFT JOIN makepost ON posts.pid = makepost.pid LEFT JOIN accounts ON makepost.aid = accounts.aid WHERE ssid = '$subs' ORDER BY posts.createdatetime DESC");
-  echo implode(" | ",$post_results);
+  //echo implode(" | ",$post_results);  
 	echo "<table data-role=\"table\" class=\"ui-responsive\" id=\"myTable\"><thead>
     <tr>
       <th>Title</th>
