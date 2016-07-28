@@ -50,4 +50,4 @@
 			}
 	}
 echo "</div></div>";
-include './include/template/footer.php';?>
+?>

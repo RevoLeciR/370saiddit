@@ -8,34 +8,33 @@
     <?php
       session_start();
       if (isset($_SESSION['login']) && $_SESSION['login'] != '') {
-        echo "<a href='logout.php'>SIGN OUT</a>";
+        echo "Hello " . $_SESSION['user'] . "<br><a href='logout.php'>SIGN OUT</a>";
       } else {
         echo "<a href='login.html'>LOGIN</a> | <a href='registration.html'> SIGN UP</a>";
       }
     ?>
     <?php
-      echo !isset($_SESSION['login']); //will echo 1 if not logged in, blank if logged in
+      //echo !isset($_SESSION['login']); //will echo 1 if not logged in, blank if logged in
       
       if (isset($_SESSION['login']) && $_SESSION['login'] != '') {
-        echo "<br>logged<br>"; 
+        //echo "<br>logged<br>"; 
       } else {
-        echo "<br> not logged<br>";
+        //echo "<br> not logged<br>";
       }
     ?>
   </Center>
 
-  <br>
+  <br><BR>
 <?php 
   //include "./include/dbconnect.php";
-  $x = 10;
-  echo $x;
-  echo "<br>hi " . $x . "<br>";
+
+  //echo "<br>hi " . $x . "<br>";
   //$y = mysqli_query($db, "SELECT COUNT(pid) as total FROM posts");
   $result = mysqli_fetch_assoc(mysqli_query($db, "SELECT COUNT(pid) as total FROM posts"));
-  echo $result['total'] . " posts in Posts table.<br>";
+  //echo $result['total'] . " posts in Posts table.<br>";
   
   $test = mysqli_fetch_assoc(mysqli_query($db, "SELECT aid as acc from accounts"));
-  echo $test['acc'] . "<br>";
+ // echo $test['acc'] . "<br>";
   
   $max = 3; //max posts in 1 page
   $curr = 0; //counter for the amount of posts

@@ -6,12 +6,14 @@
 	  $password = hash("sha256", $pre_hash);
 	  $member_matching = mysqli_query($db, "SELECT aid FROM accounts WHERE (username = '$username' AND password = '$password')");
 	  if(mysqli_num_rows($member_matching) > 0){
-		  //$member_retrieve = mysqli_fetch_assoc($member_matching);
-		  //$aid = $member_retrieve['aid'];
-		  //setcookie("aid",$aid,time()+3600);
+		  $member_retrieve = mysqli_fetch_assoc($member_matching);
+		  $aid = $member_retrieve['aid'];
+		  setcookie("aid",$aid,time()+3600);
       session_start();
+      $_SESSION['user'] = $username;
       $_SESSION['login'] = 1;
       header("Location: index.php");
+      echo $username;
 	  }else{
 		  echo "Error: Account does not exists!! Redirecting in 3 seconds...";
       session_start();

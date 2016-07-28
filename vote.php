@@ -69,4 +69,4 @@
 	}else{
 		echo "!!??";
 	}
-include './include/template/footer.php';?>
+?>

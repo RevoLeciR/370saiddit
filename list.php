@@ -11,4 +11,4 @@
 	}
 echo "</tbody></table>";
 echo '<a href="./newsubsaiddit.php"  data-ajax="false">New Subsaiddit</a>';
-include './include/template/footer.php';?>
+?>

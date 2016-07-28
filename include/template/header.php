@@ -39,7 +39,7 @@ if(isset($_COOKIE["aid"])){
  <body>
     <div data-role="header" data-position="fixed" data-theme="b">
         <dt id="header_title"> @"@ <span>prototype</span></dt>
-		<a href="#left-panel" data-icon="carat-r" data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-nodisc-icon">Open left panel</a>
+		<a href="#left-panel" data-icon="ca	at-r" data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-nodisc-icon">Open left panel</a>
     </div><!-- /header -->
 
 	<div data-role="panel"  data-display="push"  id="left-panel" data-theme="b">
