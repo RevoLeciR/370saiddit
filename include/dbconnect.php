@@ -2,7 +2,7 @@
 
 	$dbsite = 'localhost';
 	$dbuser = 'root';
-	$dbpw = '';
+	$dbpw = 'clare';
 	$dbase = '370';
 
 	$db = mysqli_connect($dbsite,$dbuser,$dbpw,$dbase);
