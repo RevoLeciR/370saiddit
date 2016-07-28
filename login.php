@@ -7,9 +7,10 @@
 	  $member_matching = mysqli_query($db, "SELECT aid FROM accounts WHERE (username = '$username' AND password = '$password')");
 	  if(mysqli_num_rows($member_matching) > 0){
 		  $member_retrieve = mysqli_fetch_assoc($member_matching);
-		  //$aid = $member_retrieve['aid'];
+		  $aid = $member_retrieve['aid'];
 		  //setcookie("aid",$aid,time()+3600);
       session_start();
+      $_SESSION['aid'] = $aid;
       $_SESSION['user'] = $username;
       if ($username == 'admin') {
         $_SESSION['admin'] = 1;
@@ -26,5 +27,4 @@
       header("Refresh:3; url=login.html");
       //exit();
 	  }
-    //include './include/template/footer.php';
  ?>

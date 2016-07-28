@@ -45,7 +45,7 @@ if(isset($_COOKIE["aid"])){
 			if (!isset($_SESSION['login'])){
 				echo '<a href="./login.html" class="ui-btn ui-btn-b ui-shadow">Sign in</a> <a href="./registration.html" class="ui-btn ui-btn-b ui-shadow">Register</a>'; 		
 			} else {
-				echo '<a href="logout.php" class="ui-btn ui-corner-all ui-shadow ui-btn-icon-left">Log out</a>';
+				echo '<a href="logout.php" class="ui-btn ui-corner-all ui-shadow">Log out</a>';
 			}
 		?>
 		</div>

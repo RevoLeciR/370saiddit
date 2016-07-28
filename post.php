@@ -2,18 +2,23 @@
 	if(!isset($_REQUEST)){
 		$pid = NULL;
 	}else{
-		$pid = $_REQUEST['pid'];
+		$pid = $_REQUEST['post'];
 	}
-	$posts_results = mysqli_query($db,"SELECT * FROM posts JOIN makepost ON posts.pid = makepost.pid JOIN accounts ON makepost.aid = accounts.aid WHERE posts.pid = '$pid'");
+	$posts_results = mysqli_query($db,"SELECT * FROM posts INNER JOIN makepost ON posts.pid = makepost.pid JOIN accounts ON makepost.aid = accounts.aid WHERE posts.pid = '$pid'");
 	$comments_results = mysqli_query($db,"SELECT * FROM comments LEFT JOIN commentcom ON comments.cid = commentcom.com_cid LEFT JOIN accounts ON comments.created_aid = accounts.aid WHERE comments.refer_pid = '$pid' AND comments.cid NOT IN (SELECT com_cid FROM commentcom) ORDER BY comments.datetime ASC");
-	$row = mysqli_fetch_array($posts_results);
-	if($aid == $row["aid"]){
-		echo "<div><div>Title: ".$row["title"]." - ".$row["createdatetime"]."</div><div>Message: ".$row["text"]."<br><a href=\"editpost.php?pid=".$row["pid"]."&action=delete\" onclick=\"return confirm('Are you sure?')\"  data-ajax=\"false\">DELETE</a><br></div><br><div>";
-	}else{
-		echo "<div><div>Title: ".$row["title"]." - ".$row["createdatetime"]."</div><div>Message: ".$row["text"]."<br><a href=\"vote.php?pid=".$row["pid"]."&opt=up\"  onclick=\"return confirm('Are you sure?')\" data-ajax=\"false\">UPVOTE</a> / <a href=\"vote.php?pid=".$row["pid"]."&opt=down\"  onclick=\"return confirm('Are you sure?')\" data-ajax=\"false\">DOWNVOTE</a><br></div><br><div>";
-	}
+  $row = mysqli_fetch_assoc($posts_results);
+  //echo implode(" | ", $row); //check to see what is in the query array
+
+   echo "<br><div><div>Title: " .$row["title"] . "<br> Posted by: ". $row['username'] . "<br>" . "Posted on: " . $row['createdatetime'] . "<br>Message: ".$row["text"] . "<br>";
+	if (isset($_SESSION['login'])) {
+    if($_SESSION['aid'] == $row["aid"]){
+		  echo "<br><a href=\"vote.php?pid=".$row["pid"]."&opt=up\"  onclick=\"return confirm('Are you sure?')\" data-ajax=\"false\">UPVOTE</a> | <a href=\"vote.php?pid=".$row["pid"]."&opt=down\"  onclick=\"return confirm('Are you sure?')\" data-ajax=\"false\">DOWNVOTE</a> | <a href=\"editpost.php?pid=".$row["pid"]."&action=delete\" onclick=\"return confirm('Are you sure?')\"  data-ajax=\"false\">DELETE</a><br></div><br><div>";
+	  }else{
+		  echo "<br><a href=\"vote.php?pid=".$row["pid"]."&opt=up\"  onclick=\"return confirm('Are you sure?')\" data-ajax=\"false\">UPVOTE</a> | <a href=\"vote.php?pid=".$row["pid"]."&opt=down\"  onclick=\"return confirm('Are you sure?')\" data-ajax=\"false\">DOWNVOTE</a><br></div><br><div>";
+	  }
+  }
 	if($comments_results)
-		echo 'Comments: <br>';
+		echo '<br>Comments: <br>';
 		while($c_row = mysqli_fetch_array($comments_results)){
 			if($c_row["com_cid"] == NULL){
 				if($aid == $c_row["aid"]){
